@@ -5,7 +5,7 @@ from classes.song import Song
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
-        self.main_room = Room("Main Room")
+        self.main_room = Room("Main Room", 50)
         self.new_guest_1 = Guest ("Jacob")
         self.starlight_song = Song("Starlight", 200)
 
@@ -34,3 +34,10 @@ class TestRoom(unittest.TestCase):
 
     def test_room_has_max_capacity(self):
         self.assertEqual(50, self.main_room.max_capacity)
+
+    def test_room_will_deny_over_max_capacity(self):
+        while len(self.main_room.guest_list) < 50:
+            self.main_room.add_guest(self.new_guest_1)
+        self.assertEqual("Room has reached max capacity", self.main_room.add_guest(self.new_guest_1))
+
+        

@@ -31,3 +31,6 @@ class TestRoom(unittest.TestCase):
     def test_room_can_add_song(self):
         self.main_room.add_song(self.starlight_song)
         self.assertEqual(1, len(self.main_room.song_list))
+
+    def test_room_has_max_capacity(self):
+        self.assertEqual(50, self.main_room.max_capacity)
